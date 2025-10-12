@@ -1,17 +1,18 @@
+{%load static%}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>index</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Início</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="{% static 'js/dark_mode.js' %}"></script>
     {%load bootstrap5%}
     {%bootstrap_css%}
     {%bootstrap_javascript%}
 </head>
-<body>
+<body class="light-mode">
     <header>
-        
         <nav>
             <ul class="nav bg-dark">
                 <li class="nav-item">
@@ -27,11 +28,12 @@
                     <a class="nav-link link-light" href="/register">Cadastrar Novo Animal</a>
                 </li>
             </ul>
+            <button id="toggle-theme">Dark / Light mode</button>
         </nav>
     </header>
 
     <div id="msg">
-        <h1>Lorem ipsum dolor sit amet consectetur, adipisicinusdam repudiandae ducimus voluptatem ad, veniam cum amet quod maiores suscipit dicta optio beatae nihil consectetur est.</h1>
+        <h2>Lorem ipsum dolor sit amet consectetur, adipisicinusdam repudiandae ducimus voluptatem ad, veniam cum amet quod maiores suscipit dicta optio beatae nihil consectetur est.</h2>
     </div>
     <main>
         

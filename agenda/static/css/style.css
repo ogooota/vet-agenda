@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Cascadia+Mono:ital,wght@0,200..700;1,200..700&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+
+* {
+    font-family: "Josefin Sans";
+}
+
+body.light-mode {
+    background-color: white;
+    color: black;
+}
+
+body.dark-mode {
+    background-color: #121212;
+    color: white;
+}
+
+.nav-item {
+    background-color: #c57b57;
+    transition: .2s;
+}
+
+.nav-item:hover {
+    background-color: #bf6c43;
+}

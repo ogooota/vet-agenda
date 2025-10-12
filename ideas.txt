@@ -1,1 +1,35 @@
+projeto agenda vet
 
+pagina principal {
+	-mostrar botão para agenda {
+		-mostrar botão para adicionar animal em horário;
+		-mostrar botão para entrar na ficha do animal;
+		-mostrar botão para nova prescrição de medicamentos;
+        -mostrar botão para novo agendamento de vacina; 
+        
+	}
+	-mostrar botão para animais cadastrados {
+		-mostrar animais cadastrados, ficha;
+	}
+	-mostrar botão para cadastro de novos animais atendidos {
+		-cadastro {
+			-nome;
+			-sexo;
+			-data de nascimento / idade ao lado;
+			-peso;
+			-nome do tutor;
+			-contato do tutor;
+		}
+		-ficha {
+			-histórico do animal;
+			-adicionar anamnese;
+			-adicionar fotos;
+			-adicionar pedidos de exame;
+			-adicionar resultados de exame;
+			-mostrar valores já pagos pelo tutor até então;
+		}
+	}
+    
+	-mostrar botão para atualizar dados de animais atendidos;
+	-mostrar mensagem bonita aleatória para começar o dia bem;
+}
