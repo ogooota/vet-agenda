@@ -1,7 +1,9 @@
-#vet-agenda
-A simple API for veterinarians in Django 🐱🐶
+# Vet Agenda API
+A simple API for managing appointments, prescriptions, vaccines, anamnesis, complaints, and more...
+🐱🐶
 
-#remade
-This repository has been remade since I was commiting quite a dumb mistake that a friend of mine from uni helped me with. 
-Anyways... 
+# Remade
+This repo has been remade since a friend of mine from uni noticed a very, very stupid mistake on it...
+Thanks dedé
+Already fixed tho :DD
 Enjoy!
