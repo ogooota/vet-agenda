@@ -1,89 +1,89 @@
 from django.db import models
 
 # classe do dono do animal
-class Owners(models.Model):
+class Owner(models.Model):
     name = models.CharField(max_length=255)
     phone = models.IntegerField()
 
     def __str__(self):
-        return self.name
+        return f"{self.name}"
     
 # classe do animal em si
-class Animals(models.Model):
+class Animal(models.Model):
     name = models.CharField(max_length=50)
     sex = models.CharField(max_length=1)
     dob = models.DateField(max_length=10, null=True)
     weight = models.FloatField(max_length=5, blank=True, null=True)
     is_alive = models.BooleanField()
-    owner_id = models.ForeignKey(Owners, on_delete=models.SET_NULL, null=True, blank=True)
+    owner = models.ForeignKey(Owner, on_delete=models.SET_NULL, null=True, blank=True)
 
     def __str__(self):
-        return self.name
+        return f"ANIMAL: {self.name}. ID: #{self.id}"
 
 #########
 # classe para as FICHAS
 #########
-class Records(models.Model):
-    animal_id = models.ForeignKey(Animals, on_delete=models.SET_NULL, null=True)
-    owner_id = models.ForeignKey(Owners, on_delete=models.SET_NULL, null=True)
+class Record(models.Model):
+    animal = models.ForeignKey(Animal, on_delete=models.SET_NULL, null=True)
+    owner = models.ForeignKey(Owner, on_delete=models.SET_NULL, null=True)
 
     def __str__(self):
-        return f"Animal: {self.animal_id.name}"
+        return f"ANIMAL: {self.animal.name}. TUTOR: {self.owner.name}"
 
 
 # classe para consultas
-class Appointments(models.Model):
-    record_id = models.ForeignKey(Records, on_delete=models.SET_NULL, null=True, blank=True)
+class Appointment(models.Model):
+    record = models.ForeignKey(Record, on_delete=models.SET_NULL, null=True)
     type = models.CharField(max_length=30, null=True)
     date = models.DateField(max_length=10, null=True)
 
     def __str__(self):
-        return f"Consulta marcada para {self.animal_id.name}"
+        return f"Consulta marcada. DATA: {self.date.strftime("%d/%m/%Y")}. ANIMAL: {self.record.animal.name} ID:{self.record.animal}"
     
 # classe para vacinas
-class Vaccines(models.Model):
+class Vaccine(models.Model):
     type = models.CharField(max_length=4)
     last_date = models.DateField(max_length=10, null=True, blank=True)
     next_date = models.DateField(max_length=10, null=True, blank=True)
     lote = models.IntegerField()
 
     def __str__(self):
-        return self.type
+        return f"Vacina: {self.type}"
 
 # classe para vacinas aplicadas
-class TakenVaccines(models.Model):
-    record_id = models.ForeignKey(Records, on_delete=models.SET_NULL, null=True, blank=True)
-    vaccine_id = models.ForeignKey(Vaccines, on_delete=models.SET_NULL, null=True, blank=True)
+class TakenVaccine(models.Model):
+    record = models.ForeignKey(Record, on_delete=models.SET_NULL, null=True)
+    vaccine = models.ForeignKey(Vaccine, on_delete=models.SET_NULL, null=True)
 
     def __str__(self):
-        return f"Vacina tomada por {self.animal_id.name}"
+        return f"Vacina: {self.vaccine.type}. ANIMAL: {self.record.animal.name} ID: #{self.record.animal}"
     
 # classe para anamneses
 class Anamnesis(models.Model):
     anamnese = models.TextField(max_length=3500)
     date = models.DateField(max_length=10, null=True)
-    appointment_id = models.ForeignKey(Appointments, on_delete=models.SET_NULL, null=True, blank=True)
-    vaccine_id = models.ForeignKey(Vaccines, on_delete=models.SET_NULL, null=True, blank=True)
-    record_id = models.ForeignKey(Records, on_delete=models.SET_NULL, null=True)
+    appointment = models.ForeignKey(Appointment, on_delete=models.SET_NULL, null=True)
+    takenVaccine = models.ForeignKey(TakenVaccine, on_delete=models.SET_NULL, null=True, blank=True)
+    record = models.ForeignKey(Record, on_delete=models.SET_NULL, null=True)
 
     def __str__(self):
-        return f"Animal: {self.appointment_id.animal_id}"
+        return f"Anamnese salva. ANIMAL: {self.record.animal.name} ID: #{self.record.animal}"
     
 # classe para prescrições
-class Prescriptions(models.Model):
+class Prescription(models.Model):
     prescription = models.TextField(max_length=2500)
-    animal_id = models.ForeignKey(Animals, on_delete=models.SET_NULL, null=True, blank=True)
-    appointment_id = models.ForeignKey(Appointments, on_delete=models.SET_NULL, null=True, blank=True)
+    animal = models.ForeignKey(Animal, on_delete=models.SET_NULL, null=True)
+    appointment = models.ForeignKey(Appointment, on_delete=models.SET_NULL, null=True, blank=True)
     date = models.DateField(max_length=10, null=True)
-    record_id = models.ForeignKey(Records, on_delete=models.SET_NULL, null=True)
+    record = models.ForeignKey(Record, on_delete=models.SET_NULL, null=True)
 
     def __str__(self):
-        return f"Prescrição feita para {self.animal_id.name}"
+        return f"Prescrição feita. ANIMAL: {self.animal.name} ID: #{self.animal}"
     
 # classe para queixas 
-class Complaints(models.Model):
+class Complaint(models.Model):
     complaint = models.TextField(max_length=2000)
-    appointment_id = models.ForeignKey(Appointments, on_delete=models.SET_NULL, null=True, blank=True)
+    appointment = models.ForeignKey(Appointment, on_delete=models.SET_NULL, null=True)
     
     def __str__(self):
-        return f"Queixa feita na consulta de id #{self.appointment_id}"
+        return f"Queixa registrada. ANIMAL: {self.appointment.record.animal.name} ID: #{self.appointment.record.animal.id}"
