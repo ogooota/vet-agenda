@@ -16,6 +16,7 @@ class Animal(models.Model):
     weight = models.FloatField(max_length=5, blank=True, null=True)
     is_alive = models.BooleanField()
     owner = models.ForeignKey(Owner, on_delete=models.SET_NULL, null=True, blank=True)
+    pic = models.ImageField(upload_to='animals/', null=True, blank=True)
 
     def __str__(self):
         return f"ANIMAL: {self.name}. ID: #{self.id}"
@@ -62,7 +63,7 @@ class TakenVaccine(models.Model):
 class Anamnesis(models.Model):
     anamnese = models.TextField(max_length=3500)
     date = models.DateField(max_length=10, null=True)
-    appointment = models.ForeignKey(Appointment, on_delete=models.SET_NULL, null=True)
+    appointment = models.ForeignKey(Appointment, on_delete=models.SET_NULL, null=True, blank=True)
     takenVaccine = models.ForeignKey(TakenVaccine, on_delete=models.SET_NULL, null=True, blank=True)
     record = models.ForeignKey(Record, on_delete=models.SET_NULL, null=True)
 
@@ -72,7 +73,6 @@ class Anamnesis(models.Model):
 # classe para prescrições
 class Prescription(models.Model):
     prescription = models.TextField(max_length=2500)
-    animal = models.ForeignKey(Animal, on_delete=models.SET_NULL, null=True)
     appointment = models.ForeignKey(Appointment, on_delete=models.SET_NULL, null=True, blank=True)
     date = models.DateField(max_length=10, null=True)
     record = models.ForeignKey(Record, on_delete=models.SET_NULL, null=True)

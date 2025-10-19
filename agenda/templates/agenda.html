@@ -1,11 +1,52 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agenda</title>
-</head>
-<body>
-    
-</body>
-</html>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Agenda{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/agenda.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="calendar">
+  <div class="calendar-header text-center mb-3">
+    <button id="prevMonth" class="btn btn-outline-secondary btn-sm">◀</button>
+    <h2 id="monthYear" class="d-inline mx-2"></h2>
+    <button id="nextMonth" class="btn btn-outline-secondary btn-sm">▶</button>
+  </div>
+
+  <div class="calendar-grid" id="calendar">
+    <div class="day-name">D</div>
+    <div class="day-name">S</div>
+    <div class="day-name">T</div>
+    <div class="day-name">Q</div>
+    <div class="day-name">Q</div>
+    <div class="day-name">S</div>
+    <div class="day-name">S</div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="eventModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Eventos — <span id="modalDate"></span></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <div id="eventList" class="mb-3"></div>
+        <form id="addEventForm">
+          <input id="eventTitle" type="text" class="form-control mb-2" placeholder="Tipo de Consulta" required>
+          <input id="eventTime" type="time" class="form-control mb-2">
+          <button class="btn btn-secondary w-100" type="submit">Adicionar consulta</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'js/agenda-script.js' %}"></script>
+{% endblock %}

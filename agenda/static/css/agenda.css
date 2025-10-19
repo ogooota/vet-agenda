@@ -1,0 +1,88 @@
+body {
+    font-family: 'Segoe UI', sans-serif;
+    color: black;
+}
+
+.calendar {
+    max-width: 600px;
+    margin: 40px auto;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    padding: 20px;
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.calendar-header h2 {
+    margin: 0;
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+}
+
+.day-name, .day {
+    width: 100%;
+    height: 80px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+    padding: 6px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+}
+
+.day-name {
+    justify-content: center;
+    font-weight: 600;
+    color: #6c757d;
+    height: 40px;
+}
+
+.day.other-month {
+    color: #adb5bd;
+}
+
+.day.today {
+    border: 2px solid #0d6efd;
+    font-weight: bold;
+}
+
+.day:hover {
+    background: #e9ecef;
+    cursor: pointer;
+}
+
+.events {
+    position: absolute;
+    bottom: 6px;
+    left: 6px;
+    right: 6px;
+    font-size: 0.75rem;
+    color: #495057;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.event-pill {
+    display: block;
+    background-color: #0d6efd;
+    color: #fff;
+    border-radius: 10px;
+    padding: 2px 6px;
+    margin-top: 2px;
+    font-size: 0.7rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
